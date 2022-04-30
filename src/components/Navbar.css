@@ -1,0 +1,12 @@
+.bg-myRed{
+    background-color: crimson;
+}
+
+.nav{
+    display: flex;
+    justify-content: end;
+}
+.na{
+    margin-right: 16px;
+}
+
