@@ -2,7 +2,8 @@ import { style } from '@mui/system'
 import React from 'react'
 
 const btnColor = {
-   borderRadius: "none"
+  borderRadius: "none",
+  width: "100px"
 }
 
 function Button() {

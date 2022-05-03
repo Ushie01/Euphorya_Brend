@@ -19,7 +19,6 @@ const App = () => {
     <Route path='/'
                 element={
                   <>
-                   
                     <Slider className='slider' />
                     <Home />
                     <Footer />
@@ -28,15 +27,11 @@ const App = () => {
               />
               <Route path='/New'
                 element={
-                  <>
                     <New />
-                  </>
                 } />
               <Route path='/About'
                 element={
-                  <>
                     <About />
-                  </>
                 }
               />          
       </Routes >    
