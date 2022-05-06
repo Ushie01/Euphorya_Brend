@@ -9,7 +9,7 @@ const btnColor = {
 function Button() {
   return (
     <div>
-          <Button style={btnColor} variant="dark">Add To Cart</Button>
+      <button style={btnColor} variant="dark">Add To Cart</button>
     </div>
   )
 }

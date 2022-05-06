@@ -1,6 +1,5 @@
 .in-new {
   min-height: 500px;
-  border: 1px solid #000;
 }
 
 .row1 {
@@ -203,20 +202,39 @@ input[type=range]::-moz-range-progress {
   transition: 2s;
 }
 
-.iteM{
+.imgHome{
   height: 300px;
   width: 300px;
-  border: 1px solid black;
   margin: auto;
   margin-top: 30px;
+  object-fit: contain;
+
+}
+
+.itemContainer{
+  height: 400px;
 }
 
 .iteMRow{
   display: flex;
   justify-content: space-around;
   margin-top: 10px;
+  
 }
 
 .iteMname{
   font-size: large;
+}
+
+.item-price {
+  font-size: 20px;
+}
+
+.item-price strike {
+  color: red;
+}
+
+.item-price span {
+  color: #86bd57;
+  font-size: 25px;
 }

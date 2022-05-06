@@ -1,4 +1,5 @@
 import React from 'react'
+import { Routes, Route } from 'react-router-dom'
 import Female from './images/female.svg'
 import Male from './images/male.svg'
 import Transgender from './images/transgender.svg'
@@ -7,6 +8,7 @@ import EurSix from './images/eur6.jpeg'
 import Eur45 from './images/eur45.jpg'
 import NavBar from './NavBar'
 import SliderTwo from './SliderTwo'
+import SinglePost from './SinglePost'
 
 
 function Home() {
@@ -168,9 +170,8 @@ function Home() {
   </div>
 </div>
 
-
-      
-
+     
+    
     </>
   )
 }

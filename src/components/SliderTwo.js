@@ -18,7 +18,8 @@ function SliderTwo() {
             .catch(console.error);
 
     }, []); 
-
+    
+		
     const style = {
         color: "#000"
 	}
@@ -43,9 +44,9 @@ function SliderTwo() {
 				<div className="carousel-item active">
                     <div className="row">
                          {postData && postData.map((post, index) => (              
-						<div className="col-sm-3" key={index}>
-							<div className="thumb-wrapper">
-									 <Link to={"./post/" + post.slug.current} key={post.slug.current} style={{ textDecoration:'none'}}>
+							 <div className="col-sm-3" key={index}>
+								 
+								<Link to={"./post/" + post.slug.current} key={post.slug.current} style={{ textDecoration:'none'}}>
 								<div className="img-box" style={{marginTop: "30px"}} >
 									<img src={post.mainImage.asset.url} className="img-fluid" alt={post.mainImage.alt} />
 								</div>
@@ -56,7 +57,7 @@ function SliderTwo() {
                                 </Link>
 									 <a href="#" className="btn btn-primary">Add to Cart</a>	
 								<hr style={{color:'gray'}}/>	 
-							</div>
+							
                         </div>
                         ))}    
                           
