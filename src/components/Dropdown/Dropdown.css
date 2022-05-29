@@ -1,0 +1,37 @@
+.dropdow{
+    height: 50px;
+    width: 275px;
+    font-size: 15px;
+    border: 0.01px solid gray;
+    background-color: #fff;
+    user-select: none;
+    border: 1px solid black;
+}
+
+.dropdow .dropbtn-click{
+    padding: 15px;
+    font-size: bold;
+    color: #333;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.dropdow .dropdown-content{
+    position: absolute;
+    padding: 10px;
+    width: 280px;
+    color:#333;
+    background-color: #fff;
+    border: 1px solid black;
+}
+
+.dropdow .dropdown-content .dropdown-item{
+    padding: 10px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.dropdow .dropdown-content .dropdown-item:hover{
+    background: #f4f4f4;
+}

@@ -1,9 +1,9 @@
 import React from 'react'
-import LogoFacebook from './images/logo-facebook.svg'
-import LogoTwitter from './images/logo-twitter.svg'
-import LogoInstagram from './images/logo-instagram.svg'
-import Call from './images/call.svg'
-import Help from './images/help.svg'
+import LogoFacebook from '../assets/logo-facebook.svg'
+import LogoTwitter from '../assets/logo-twitter.svg'
+import LogoInstagram from '../assets/logo-instagram.svg'
+import Call from '../assets/call.svg'
+import Help from '../assets/help.svg'
 
 
 

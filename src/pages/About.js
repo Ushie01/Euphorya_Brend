@@ -1,14 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import sanityClient from "../client.js"
-import Eur from './eur45.jpg'
+import Eur from '../assets/eur45.jpg'
 // import imageUrlBuilder from "@sanity/image-url"
 import BlockContent from "@sanity/block-content-to-react"
+import Dropdown from '../components/Dropdown/Dropdown'
 
-
-// const builder = imageUrlBuilder(sanityClient);
-// function urlFor(source) {
-//   return builder.image(source);
-// }
 
 function About() {
   const [post, setPost] = useState(null);
@@ -26,6 +22,7 @@ function About() {
  
   return (
     <main className='relative'>
+      
       <img src={Eur} alt="Euphorya Brand" className='' />
       <div className='' >
         <img src={post.mainImage.asset.url} alt="" />
@@ -36,7 +33,7 @@ function About() {
             <span className='' style={{color:"black"}}>{post.name}</span>
           </h1>
           <div className="">
-           
+            <Dropdown />
           </div>
         </div>
       </div>

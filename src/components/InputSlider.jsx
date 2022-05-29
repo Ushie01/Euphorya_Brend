@@ -31,15 +31,14 @@ const marks = [
 ];
 
 function valuetext(value) {
-  return `${value}°C`;
+  console.log(value)
 }
 
 export default function InputSlider() {
   return (
-    <Box sx={{ width: 280 }}>
+    <Box sx={{ width: "240px" }}>
       <Slider
         aria-label="Always visible"
-        defaultValue={80}
         getAriaValueText={valuetext}
         step={10}
         marks={marks}

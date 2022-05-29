@@ -629,7 +629,7 @@ body {
 .brand {
   height: 320px;
   margin: center;
-  background-image: url(./components/images/logo.jpeg);
+  background-image: url(./assets/logo.jpeg);
   background-repeat: no-repeat;
   background-size: 500px;
   background-position: center;
@@ -858,18 +858,17 @@ h3 {
 }
 
 .button {
-  margin: 10px 0px 0px 10px;
+  margin: 5px 0px 0px 5px;
   color: #000;
   
 }
 
 button:hover {
-  margin: 10px 0px 0px 10px;
   box-shadow: 0 4px 8px 0 #000, 0 6px 20px 0 #F5FEF9;
 }
 
 .er {
-  background-image: url(./components/images/eur10.jpeg);
+  background-image: url(./assets/eur10.jpeg);
   background-repeat: no-repeat;
   background-size: 300px;
   box-shadow: gray;
@@ -883,7 +882,7 @@ button:hover {
 
 
 .er1 {
-  background-image: url(./components/images/eur5.jpeg);
+  background-image: url(./assets/eur5.jpeg);
   background-repeat: no-repeat;
   background-size: 300px;
   box-shadow: gray;
@@ -899,7 +898,7 @@ button:hover {
 }
 
 .er2 {
-  background-image: url(./components/images/eur13.jpeg);
+  background-image: url(./assets/eur13.jpeg);
   background-repeat: no-repeat;
   background-size: 300px;
   box-shadow: gray;
@@ -1256,7 +1255,3 @@ h2::after {
   font-size: 14px;
   color: #ffc000;
 }
-
-
-
-/* what our shoppers are saying about us */

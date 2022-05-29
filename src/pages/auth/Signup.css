@@ -1,0 +1,22 @@
+.SignUpPage {
+    margin: auto;
+    width: 250px;
+    margin-right: 300px;
+    
+}
+.nju{
+    background-image: url(../../assets/cartImage.png);
+    background-attachment: fixed;
+}
+
+.signUp{
+    font-size: 40px;
+}
+
+.createAccount{
+    margin: center;
+}
+
+Link{
+    text-decoration-line: none;
+}

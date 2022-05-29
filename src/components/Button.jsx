@@ -3,7 +3,11 @@ import React from 'react'
 
 const btnColor = {
   borderRadius: "none",
-  width: "100px"
+  backgroundColor: "#000",
+  color:"#fff",
+  width: "120px",
+  height: "50px",
+  padding: "auto",
 }
 
 function Button() {

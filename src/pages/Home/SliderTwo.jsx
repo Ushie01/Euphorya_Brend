@@ -1,32 +1,34 @@
 import React, { useState, useEffect } from 'react'
 import { Link } from "react-router-dom"
+import sanityClient from "../../client"
 
-import sanityClient from "../client.js"
 
-
-function SliderTwo() {
-
+function SliderTwo() {   
     const [postData, setPost] = useState(null);
 
     useEffect(() => {
         sanityClient.fetch(`*[_type == "post"]{
-            title, slug, strike, span, mainImage{
+            _id, title, slug, strike, span, mainImage{
                 asset->{_id,url}
             },alt
-        }`)
+        }`)  
             .then((data) => setPost(data))
-            .catch(console.error);
+			.catch(console.error);
+		    
 
-    }, []); 
-    
-		
+	}, []); 
+	
+    // const handleDetails=(item)=>{
+	// 	productDetails(item); 
+	// 	console.log(item)
+	// }
+	
     const style = {
         color: "#000"
 	}
 	
 
     return (
-      
     <div>
         <div className="container" style={{minHeight: '600px'}}>
 	<div className="row">
@@ -45,22 +47,19 @@ function SliderTwo() {
                     <div className="row">
                          {postData && postData.map((post, index) => (              
 							 <div className="col-sm-3" key={index}>
-								 
-								<Link to={"./post/" + post.slug.current} key={post.slug.current} style={{ textDecoration:'none'}}>
-								<div className="img-box" style={{marginTop: "30px"}} >
-									<img src={post.mainImage.asset.url} className="img-fluid" alt={post.mainImage.alt} />
-								</div>
-								<div className="thumb-content">
-                                    <h3 style={style}>{post.title}</h3>
-                                    <p className="item-price"><strike>#{post.strike}</strike> <span>#{post.span}</span></p>	
-										 </div>		 
-                                </Link>
-									 <a href="#" className="btn btn-primary">Add to Cart</a>	
+								<Link to={`/post/${post.slug.current}`} key={post.slug.current} style={{ textDecoration:'none'}}>
+									<div className="img-box" style={{marginTop: "30px"}} >
+										<img src={post.mainImage.asset.url} className="img-fluid" alt={post.mainImage.alt} />
+									</div>
+									<div className="thumb-content">
+										<h3 style={style} onClick={() => console.log(post._id)}>{post.title}</h3>
+										<p className="item-price"><strike>#{post.strike}</strike> <span>#{post.span}</span></p>	
+									</div>		 
+								 <a className="btn btn-primary" >Add to Cart</a>	
+								</Link>
 								<hr style={{color:'gray'}}/>	 
-							
-                        </div>
+                            </div>
                         ))}    
-                          
 					</div>
 				</div>
 			</div>
