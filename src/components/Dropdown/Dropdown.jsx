@@ -5,11 +5,11 @@ import './Dropdown.css'
 function Dropdown({size, setSize, error, onChange}) {
   const [isActive, setIsActive] = useState(false);
   const options = [6, 7, 8, 9, 10];
+  // const [selected, setSelected] = useState("Select Value");
 
-  
   return (
     <div>
-      <div className='dropdown drowdow'>
+      {/* <div className='dropdown drowdow'>
         <div className='dropdown-btn dropbtn-click' onClick={(e) => setIsActive(!isActive)}>
           {size}
           <span className='fas fa-caret-down'></span>
@@ -27,11 +27,11 @@ function Dropdown({size, setSize, error, onChange}) {
             ))}
           </div>
         )}
-      </div>
+      </div> */}
 
 
-      {/* <div className="dropdow">
-        <div className="dropbtn-click" onClick={(e) => setIsActive(!isActive)} >{selected}<span className='fas fa-caret-down'></span></div>
+      <div className="dropdow">
+        <div className="dropbtn-click" onClick={(e) => setIsActive(!isActive)}> {size} <span className='fas fa-caret-down'></span></div>
         {isActive && (
           <div className='dropdown-content'>
             {options.map((option, i) => (
@@ -41,18 +41,18 @@ function Dropdown({size, setSize, error, onChange}) {
                 onChange={onChange}
                 type="number"
                 onClick={(e) => {
-                  setSelected(option);
+                  setSize(option);
                   setIsActive(false)
                 }}
                 >
-                {option}
+                {option} UK
               </div>
              
             ))}
           </div>
         )}
         </div>
-         {error && <div className='alert alert-danger'>{error}</div>} */}
+         {error && <div className='alert alert-danger'>{error}</div>}
 
     </div>
   );

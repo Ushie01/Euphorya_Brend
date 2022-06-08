@@ -61,3 +61,8 @@ input[type="submit"]:hover {
     gap: 8px;
     margin: 10px;
 }
+
+.SigninButton{
+    background-color: #01d28e;
+    margin-left: 60px;
+}

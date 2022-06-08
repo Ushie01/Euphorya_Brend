@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Signin from '../../pages/auth/Signin';
+import { Link } from 'react-router-dom';
 import Signup from '../../pages/auth/Signup'
 import './Cart.css'
 
@@ -7,7 +7,6 @@ import './Cart.css'
 function Cart({cart, handleDelete, handleIncrement,handleDecrement }) {
   const [checkOut, setCheckOut] = useState(false);
 
-  console.log(cart)
   const checkOutPage = () => {
     setCheckOut(true);
   };
@@ -24,7 +23,7 @@ function Cart({cart, handleDelete, handleIncrement,handleDecrement }) {
     handleDecrement(id);
   };
 
-
+  console.log(cart._id);
 
   return (
     <>
@@ -47,22 +46,22 @@ function Cart({cart, handleDelete, handleIncrement,handleDecrement }) {
               <div className='rowCart' key={i}>
                 <i className="fa fa-times fa-3x m-2 " onClick={() => {deleteItem(value._id)}}></i>
                 <div className='CartOne'>
-                  <img src={value.mainImage.asset.url} alt={value.mainImage.url} className='cartItem ' />
+                  <img src={`http://store-betta.herokuapp.com${value.image}`} alt={value.image} className='cartItem ' />
                 </div>
                 <div className='CartTwo'>
-                    <h1>Brend : <span>{value.title}</span></h1>
+                    <h1>Brend : <span>{value.brand}</span></h1>
                     <h4>Quantity : <span>{value.quantity}</span></h4>
-                    <h4>Size: <span>{value.size}</span></h4>  
-                    <h4>Price : <span>#{value.span}.00</span></h4>
-                    <h3>Total : <span>#{value.quantity * value.span}.00</span></h3>
+                    <h4>Size: <span>{value.size} UK</span></h4>  
+                    <h4>Price : <span>#{value.price}.00</span></h4>
+                    <h3>Total : <span>#{value.quantity * value.price}.00</span></h3>
                 </div>
                 <div className='CartThree'>
                     <button className="fa fa-plus-square fa-3x" onClick={() => {add(value._id)}}></button>
                     <i className="btn btn-warning btn-sm fa-4x" id="counter">{value.quantity}</i>
                     <button className="fa fa-minus-square fa-3x "
                           style={{color:"green"}}
-                          onClick={() => { minus(value._id) }}
-                          disabled={value.quantity === 0 ? "disabled" : ""}></button>
+                        onClick={() => { minus(value._id) }}
+                      disabled={value.quantity === 0 ? "disabled" : ""}></button>
                 </div>
                 </div>
                     <hr id='horizon' />
@@ -71,13 +70,13 @@ function Cart({cart, handleDelete, handleIncrement,handleDecrement }) {
               </div>
             <div className='shoppingRight col-md-4'>
               <h1 className='cartTotal'>Cart Total </h1>
-              <div className="row" id='subtotal'>
-                <h1 className='col-md-3'>subtotal</h1>
-                <h1 className='col-md-9 subtotalAmount'>#5,000.00</h1>
-              </div>
-              <div className="row" id='subtotal'>
-                <h1 className='col-md-3'>shipping</h1>
-                <h1 className='col-md-9'>
+              <div id='subtotal'>
+                <div className='subLeft'>subtotal</div>
+                <div className=' subtotalAmount'>#5,000.00</div>
+              </div><br />
+              <div className='row'>
+                <div className='shipping'>shipping</div><br />
+                <h1 className='col-sm-9'>
                   <form action="">
                     <input type="radio" id="ratio" name="fav_language" value="HTML" />
                     <label htmlFor="html" id="Ratio"> Delivery within Lekki 1, up to Chevron (Within 5 WORKING DAYS): ₦850.00	 </label><br />
@@ -88,13 +87,17 @@ function Cart({cart, handleDelete, handleIncrement,handleDecrement }) {
                   </form>
                 </h1>
               </div>
-              <hr />
-               <button onClick={checkOutPage} className="btn btn-warning">Check Out</button>
+                <hr />
+                <div className='displayInline'>
+                  <div className='nnpp'>total:</div>
+                  <div className='nnp'>#10,000.00</div>
+                </div>
+               <Link to="/Signup"><button onClick={checkOutPage} className="checkOut">Check Out</button></Link>
             </div>
           </div>
         </div>
         </div>
-         {!checkOut ? "" : <Signup />}
+         {/* {!checkOut ? "" : <Signup />} */}
       </div>
       
   </>    

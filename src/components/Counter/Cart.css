@@ -31,6 +31,13 @@
         background-image: url(../../assets/cartImage.png);
     }
 
+    .displayInline {
+        display: inline;
+    }
+    #subtotal{
+        display:inline
+    }
+
 }
 
 #cart,
@@ -67,8 +74,9 @@
 
 .shoppingRight {
     background-color: rgb(204, 204, 204);
-    min-height: 200px;
+    min-height: 400px;
 }
+
 
 #subtotal {
     margin-top: 30px;
@@ -90,4 +98,32 @@
 .fa-minus-square,
 .fa-plus-square {
     cursor: pointer;
+}
+
+.checkOut{
+    color: #000;
+}
+.nnpp,.subLeft,.shipping{
+    float: left;
+    font-size: 20px;
+    margin-top: 10px;
+    border: 1px solid #000;
+}
+.shipping{
+    margin-top: 30px;
+}
+
+.nnp {
+    float: right;
+    font-size: 30px;
+}
+
+.subLift{
+    float: left;
+}
+
+.subtotalAmount{
+    float: right;
+    font-size: 22px;
+    margin-right: 50px;
 }

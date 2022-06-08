@@ -13,16 +13,12 @@ import About from './pages/About'
 import Footer from './components/Footer'
 import LoginForm from './pages/Contact';
 import SinglePost from './components/SinglePost/SinglePost';
-import NavCountDrop from './components/NavCountdrop/NavCountDrop'
+import Signup from './pages/auth/Signup.jsx'
 import Signin from './pages/auth/Signin.jsx'
-import ProductState from './context/products/productState'
-
 
 const App = () => {
-
   /**********Sanity Fetch************/
   const [postData, setPost] = useState(null);
-
 
     useEffect(() => {
         sanityClient.fetch(`*[_type == "post"]{
@@ -32,6 +28,7 @@ const App = () => {
         }`)
           .then((data) => setPost(data))
           .catch(console.error);
+
     }, []); 
 
   const [count, setCount] = useState(0);
@@ -40,6 +37,11 @@ const App = () => {
   const incrementCounter = () => {
     setCount(count + 1);
   };
+
+    const [stat, setStat] = useState(0);
+  const increment = () => {
+    setStat(stat + 1);
+  }
 
   const [cart, setCart] = useState([]); 
   const productDetails = (item) => {
@@ -61,30 +63,36 @@ const App = () => {
 
 
   return (
-    <ProductState> 
+    <> 
       <NavBar count={count} cart={cart} totalCounters={0} />
           <Routes>
-        <Route path='/' element={<><NavCountDrop cart={cart}/><Slider />  <Home /> <SliderTwo  
+              <Route path='/' element={<><Slider /> <Home /> <SliderTwo  
                      incrementCounter={incrementCounter}
+                     count={count}
                      productDetails={productDetails} /> <UserViews /> </> } />
-              <Route path='/post/:slug' element={<> <SinglePost
+              <Route path='/SinglePost/:_id' element={<> <SinglePost
                      incrementCounter={incrementCounter}
-                     productDetails={productDetails} /> </>} />
+                     productDetails={productDetails} 
+                     stat={stat}
+                     setStat={setStat}
+                     count={count}/> </>} />
               <Route path='/New' element={<New
                      postData={postData} />} />
               <Route path='/About' element={ <About /> } />
               <Route path='/Contact' element={ <LoginForm /> } />  
-              <Route path="Cart" element={<Cart 
+              <Route path="/Cart" element={<Cart 
                      cart={cart} 
                      add={add}
                      handleIncrement={handleIncrement}
                      handleDecrement={handleDecrement}
-                     handleDelete={handleDelete}
-                     />} />
-          </Routes > 
+                     handleDelete={handleDelete}/>} />
+              <Route path="/Signup" element={<Signup />}/>   
+              <Route path="/Signin" element={<Signin />}/>    
+          </Routes> 
       <Footer />
-    </ProductState>
+    </>
   );
 }
+
 
 export default App

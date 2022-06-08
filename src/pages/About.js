@@ -1,43 +1,105 @@
-import React, { useEffect, useState } from 'react'
-import sanityClient from "../client.js"
-import Eur from '../assets/eur45.jpg'
-// import imageUrlBuilder from "@sanity/image-url"
-import BlockContent from "@sanity/block-content-to-react"
-import Dropdown from '../components/Dropdown/Dropdown'
+// import React, { useEffect, useReducer } from 'react';
+// import axios from 'axios';
 
+// const initialState = {
+//   loading: true,
+//   error: '',
+//   post:{}
+// }
+
+// const reducer = (state, action) => {
+//   switch (action.type) {
+//     case 'FETCH_SUCCESS':
+//       return {
+//         loading: false,
+//         post: action.payload,
+//         error: ''
+//       }
+//     case 'FETCH_ERROR':
+//       return {
+//         loading: false,
+//         post: {},
+//         error: 'Something went wrong!'
+//       }
+//     default:
+//       return state
+//   }
+// }
+
+// function About({props}) {
+//   const [state, dispatch] = useReducer(reducer, initialState)
+
+//   useEffect(() => {
+//     axios
+//       .get(`http://store-betta.herokuapp.com/api/products`)
+//       .then(response => {
+//         dispatch({
+//           type: 'FETCH_SUCCESS',
+//           payload: response.data
+//         })
+//       })
+//       .catch(error => {
+//         dispatch({
+//           type: 'FETCH_ERROR'
+//         })
+//       })
+//     console.log(state.post);
+//   }, [])
+  
+//   return (
+//     <div>
+//       {state.loading ? 'Loading' : <h1>{state.post.title}</h1>}
+//       {state.error ? state.error : null}
+
+//     </div>
+//   )
+// }
+
+// export default About
+
+
+
+
+
+
+
+
+
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 
 function About() {
-  const [post, setPost] = useState(null);
-  
-  useEffect(() => {
-    sanityClient.fetch(`*[_type == "post"]{
-      name, mainImage{
-        asset->{_id,url}
-      }
-    }`).then((data) => setPost(data[0]))
-       .catch(console.error);
-  }, []);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState('');
+  const [post, setPost] = useState([]);
 
-  if (!post) return <h2>Loading...</h2>
- 
+  useEffect(() => {
+    axios.get(`http://store-betta.herokuapp.com/api/products`)
+      .then(res => {
+        setLoading(false)
+        setPost(res.data.products)
+        setError('')
+      })
+
+      .catch(error => {
+        setLoading(false)
+        setPost([])
+        setError('Something went wrong')
+      })
+    
+    console.log(post);
+  }, []);
+   
   return (
-    <main className='relative'>
-      
-      <img src={Eur} alt="Euphorya Brand" className='' />
-      <div className='' >
-        <img src={post.mainImage.asset.url} alt="" />
-       
-        <div className=''>
-          <h1 className=''>
-            Hey there. I'm{""}
-            <span className='' style={{color:"black"}}>{post.name}</span>
-          </h1>
-          <div className="">
-            <Dropdown />
-          </div>
-        </div>
-      </div>
-    </main>
+    <div>
+      {
+        loading ? 'Loading' :
+          <>
+            <p>{ post.brand }</p>
+         </>
+      }
+      {error ? error : null}
+    </div>
   )
 }
 

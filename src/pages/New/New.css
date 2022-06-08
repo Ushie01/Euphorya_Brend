@@ -147,6 +147,12 @@ input[type=range]::-moz-range-progress {
 
 .pge {
   color: gray;
+  text-decoration: none;
+}
+
+.pge:hover{
+  text-decoration: none;
+  color: #f60371;
 }
 
 .oneToNine {
@@ -237,4 +243,9 @@ input[type=range]::-moz-range-progress {
 .item-price span {
   color: #86bd57;
   font-size: 25px;
+}
+
+.postBrand{
+  font-size: 21px;
+  margin-top: 5px;
 }

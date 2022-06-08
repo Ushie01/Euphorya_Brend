@@ -5,9 +5,9 @@ export default function validateinfo(values) {
     //     errors.size = "Size is Required"
     // }
 
-    if (!values.quantity.trim()) {
-        errors.quantity = "Quantity is Required"
-    }
+    // if (!values.quantity.trim()) {
+    //     errors.quantity = "Quantity is Required"
+    // }
 
     return errors;
 }

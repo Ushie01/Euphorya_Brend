@@ -8,8 +8,6 @@ import call from '../assets/call.svg';
 import shopping from '../assets/shopping_cart.svg';
 import menu from '../assets/menu_black.svg';
 import whatsapp from '../assets/whatsapp.svg';
-import NavCountDrop from './NavCountdrop/NavCountDrop'
-import { NoEncryption } from '@mui/icons-material';
 import { fontSize } from '@mui/system';
 
 const NavBar = ({cart}) => {
@@ -29,8 +27,6 @@ const NavBar = ({cart}) => {
         <button style={sty} onClick={() => Navigate('/')} >
             <img src={logo} width="120px" className="mr-2" />
           </button>
-        
-          
           <Navbar.Toggle className="coloring" style={{ marginRight: 20 }} />
           <Navbar.Collapse>
             <Nav className='nav'>
@@ -49,10 +45,7 @@ const NavBar = ({cart}) => {
               <button style={sty} onClick={() => Navigate('Search')} className='na'><img src={logoOne} /></button>
               <button style={sty} onClick={() => Navigate('Call')} className='na'><img src={call} /></button>
               <button style={sty} onClick={() => Navigate('Cart')} className='na'><img src={shopping} />
-                 <div className="dropdown">
                   <span className="dropbtn badge-pill badge-secondary m-2">{cart.length}</span>
-                   <NavCountDrop />
-                </div>
               </button>
               <button style={sty} onClick={() => Navigate('Whatsapp')} className='na'><img src={whatsapp} /></button>
               <button style={sty} onClick={() => Navigate('Menu')} className='na'><img src={menu} /></button>

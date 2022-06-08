@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 const useForm = (callback, validate) => {
     const [values, setValues] = useState({
         // size: '',
-        quantity: '',
+        // quantity: '',
     });
 
     const [errors, setErrors] = useState({});
@@ -18,6 +18,7 @@ const useForm = (callback, validate) => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        e.target.reset();
         setErrors(validate(values));
         setIsSubmitting(true)
     };

@@ -1,25 +1,20 @@
-import React, { useEffect, useState, Fragment} from 'react'
+import React, { useEffect, useState, Fragment, useContext} from 'react'
 import { Link } from "react-router-dom"
-import sanityClient from "../../client.js"
 import './New.css'
 import InputSlider from '../../components/InputSlider'
-
+import { fetchProducts } from "../../context/products/productState";
+import { ProductContext } from "../../context/products/productContext";
 
 function New() {
-  const [postData, setPost] = useState(null);
   const [value, setValue] = useState('');
   const [slide, setSlide] = useState(0);
-
+  const context = useContext(ProductContext);
+  const { storeProducts, data } = context;
+  
   useEffect(() => {
-    sanityClient.fetch(`*[_type == "post"]{
-      title, slug, strike, span, mainImage{
-        asset->{_id, url}
-      },alt
-    }`)
-      .then((data) => setPost(data))
-      .catch(console.error);
-  }, []); 
-
+		fetchProducts()
+		.then(data=>storeProducts(data))
+	}, []); 
 
   return (
     <div>
@@ -37,13 +32,13 @@ function New() {
               <p id="price">Price</p>
 
               <InputSlider value={slide} onChange={(e) => setSlide(e.target.value)}/>
-                
+           
               <p id="Categories">Categories</p>
-              {postData && postData.map((post, i) => (
+              {data.products.products && data.products.products.map((post, i) => (
                 <Fragment>
                   <div key={i}>
-                    <Link to={`/post/${post.slug.current}`} key={post.slug.current}>
-                    <p className="pge" href="#">{post.title}</p>
+                    <Link to={`/SinglePost/${post._id}`} key={post._id} className="pge">
+                    <p href="#">{post.brand}</p>
                   </Link>
                   </div>
                 </Fragment>
@@ -53,23 +48,23 @@ function New() {
       
           <div className="col-md-9">
             <div className='row'>
-              {postData && postData.filter((post) => {
+              {data.products.products && data.products.products.filter((post) => {
                 if (value == "") {
                   return post
-                } else if (post.title.toLowerCase().includes(value.toLowerCase())) {
+                } else if (post.brand.toLowerCase().includes(value.toLowerCase())) {
                   return post
                 }
                 }).map((post, i) => (
                 <div className='col-md-4' key={i}>
-                 <Link to={`/post/${post.slug.current}`} key={post.slug.current} >
+                    <Link to={`/SinglePost/${post._id}`} key={post._id} className="pge">
                 <div className="thumb-wrapper">
                    <div className='itemContainer'>  
                       <div className='iteM'>    
-                          <img src={post.mainImage.asset.url} className="img-fluid imgHome" alt={post.mainImage.alt} />        
+                          <img src={`http://store-betta.herokuapp.com${post.image}`} className="img-fluid imgHome" alt={post.image} />        
                         </div>
                         <div className='iteMRow'>
-                            <h1>{post.title}</h1> 
-                            <p className="item-price"><strike>#{post.strike}</strike> <span>#{post.span}</span></p>	
+                            <h1 className='postBrand'>{post.name}</h1> 
+                            <p className="item-price"> <span>#{post.price}</span></p>	
                           </div>  
                         </div> 
                     </div>

@@ -13,15 +13,6 @@ function Home() {
     color: '#000'
   }
 
-    // Getting products from local state.
-    const productContext = useContext(ProducContext)
-    const { fetchProducts , products } = productContext
-
-    React.useEffect(() => {
-       fetchProducts()
-      
-    }, [])
-    console.log(products, 'products ****')
   return (
     <>
       <div className="container-fluid" style={{  marginTop:'200px'}}>
