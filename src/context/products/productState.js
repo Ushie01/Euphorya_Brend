@@ -1,8 +1,8 @@
 const baseUrl = 'http://store-betta.herokuapp.com/api/products'                                                                                 
 
 export const fetchProducts = async() =>{
-    const res=await fetch(baseUrl)
-    const data= await res.json()
+  const res = await fetch(baseUrl);
+  const data = await res.json();
   return data
 }
 
@@ -10,7 +10,6 @@ export const initialState = {
     products: [],
     loading: false
 }
-
 
 
 // import { useReducer } from 'react';

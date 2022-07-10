@@ -1,102 +1,133 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState} from 'react';
 import { Link } from "react-router-dom";
 import Signin from "../auth/Signin";
-import {createUser} from '../../helpers/api'
-import './Signup.css';
+import { createUser } from '../../helpers/api';
+import './Signup.css'
 import './Signin'
+import { validateSignUp } from '../../components/Validateinfo';
 
 function Signup() {
-  const [name, setName] = useState('')
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
-  const [confirmPassword, setConfirmpassword] = useState('')
-  const [error, setError] = useState(null)
 
-  const handleSubmit = async () => {
-    const data = {
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [errors, setErrors] = useState({});
+  const [err, setErr] = useState(null);
+  const [isSubmitted, setIsSubmitted] = useState();
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const values = {
       name,
       email,
       password,
-      confirmPassword,
+      confirmPassword
     }
-    if (data.password !== data.confirmPassword) {
-      return ("Password don't march")
-    }
-    if (data.email !== '' && data.password !== '') {
-      const payload = await createUser(data)
-      if (payload.message) {
-        setError(payload.message)
-        return
-      }
-       console.log(data);
-       localStorage.setItem('user', payload)
-    }
-  
+
+    //Sign-Up Form Validation
+    setErrors(validateSignUp(values));
+    const payload = await createUser(values);
+    if (payload.message){
+      setErr(payload.message)
+      return
+    } 
+    localStorage.setItem('user', JSON.stringify(payload));
+    setIsSubmitted(true);
+    window.location = "/"
   }
 
-  const style = {
-    color:"white"
-  }
 
-  return (
+  const renderForm = (
     <>
       <div>
           <div className='container-fluid nju'>
               <div className='row SignUpPage'>
-                  <h1 style={style} className="signUp">Sign Up</h1>
-                  <form className='formAction' >
+                  <h1 className="signUp">Sign Up</h1>
+                  <form>
+                    <div className='form-inputs'>
+                      <label>User Name : </label>
+                      <input 
+                        onChange={(e) => setName(e.target.value)} 
+                        value={name} 
+                        name="name"
+                        type="text" 
+                        className='form-control'
+                        required 
+                        />
+                    </div>
                     
-                    <label style={style}>User Name : </label><br />
-                    <input 
-                      onChange={(e) => setName(e.target.value)} 
-                      value={name} type="text" 
-                      placeholder='User Name' 
-                      className='form-control' 
-                      required={true}/><br />
+                     {errors.name && <p style={{color:"red"}}>{errors.name}</p>} 
+                     
+                    <div className='form-inputs'>
+                      <label>Email :</label>
+                      <input 
+                        onChange={(e) => setEmail(e.target.value)} 
+                        value={email} 
+                        name="email"
+                        type="email" 
+                        className='form-control'
+                        required 
+                      />
+                    </div>
+                    
+                      {errors.email && <p style={{color:"red"}}>{errors.email}</p>}  
                       
-                    <label style={style}>Email :</label><br />
-                    <input 
-                      onChange={(e) => setEmail(e.target.value)} 
-                      value={email} type="email" 
-                      placeholder='Email' 
-                      className='form-control' 
-                      required={true}/><br />
-                      
-                    <label style={style}>Password : </label><br />
-                    <input 
-                      onChange={(e) => setPassword(e.target.value)} 
-                      value={password} type="password" 
-                      placeholder='Password' 
-                      className='form-control' 
-                      required={true}/><br />
-                      
-                    <label style={style}>Confirm Password : </label><br />
-                    <input 
-                      type="password"
-                      onChange={(e) => setConfirmpassword(e.target.value)}
-                      value={confirmPassword}
-                      placeholder='password'
-                      className='form-control'
-                      required={true} /><br />
+                    <div className='form-inputs'>
+                      <label>Password : </label>
+                      <input 
+                        onChange={(e) => setPassword(e.target.value)} 
+                        value={password} 
+                        type="text" 
+                        name="password" 
+                        className='form-control' 
+                        required
+                      />
+                    </div>
+                    
+                     {errors.password && <p style={{color:"red"}}>{errors.password}</p>} 
+                    
+                    <div className='form-inputs'>
+                      <label>Confirm Password : </label>
+                      <input 
+                        type="text"
+                        onChange={(e) => setConfirmPassword(e.target.value)}
+                        value={confirmPassword}
+                        name="confirmPassword"
+                        className='form-control'
+                        required 
+                      />
+                    </div>
+                    
+                     {errors.confirmPassword && <p style={{color:"red"}}>{errors.confirmPassword}</p>} 
                       
                     <input type="checkbox" name="vehicle1" value="Bike" />
-                    <label style={style}> <h6>I agree to <Link to={Signin} style={style}>Terms & conditions</Link></h6></label><br></br>
-                    <label style={style}>Already have an account? <Link to="/Signin" style={style}>Sign In</Link></label><br />
+                    <label> <h6>I agree to <Link to={Signin} >Terms & conditions</Link></h6></label><br></br>
+                    <label>Already have an account? <Link to="/Signin">Sign In</Link></label><br />
                     
-                    <h4 style={{color: 'red'}}>{ error }</h4>
-                    <input onClick={(e) => handleSubmit(e)} 
+                    {err && <p style={{color:"red"}}>{err}</p>}
+                   
+                    <input onClick={(e) => { handleSubmit(e) }} 
                       type="reset" 
                       value="Create Account" 
                       className='createAccount' 
-                      style={style} /><br />
-                      
+                      /><br />
                   </form>
               </div>
           </div>
       </div>
-
     </>
   )
+
+  return (
+    <div className='app'>
+      <div className='login-form'>
+        {isSubmitted ? <div>{`Welcome on board`}</div> : renderForm}
+      </div>
+    </div> 
+  );
 }
 
 export default Signup
+
+

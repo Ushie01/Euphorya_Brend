@@ -5,31 +5,9 @@ import './Dropdown.css'
 function Dropdown({size, setSize, error, onChange}) {
   const [isActive, setIsActive] = useState(false);
   const options = [6, 7, 8, 9, 10];
-  // const [selected, setSelected] = useState("Select Value");
 
   return (
     <div>
-      {/* <div className='dropdown drowdow'>
-        <div className='dropdown-btn dropbtn-click' onClick={(e) => setIsActive(!isActive)}>
-          {size}
-          <span className='fas fa-caret-down'></span>
-        </div>
-        {!isActive && (
-          <div className='dropdown-content'>
-            {options.map((option, i) => (
-              <div key={i}>
-                <div onClick={(e) => {
-                  setSize(option)
-                  setIsActive(false)
-                }}
-                  className="dropdown-item">{option}</div>
-              </div>
-            ))}
-          </div>
-        )}
-      </div> */}
-
-
       <div className="dropdow">
         <div className="dropbtn-click" onClick={(e) => setIsActive(!isActive)}> {size} <span className='fas fa-caret-down'></span></div>
         {isActive && (
@@ -44,6 +22,7 @@ function Dropdown({size, setSize, error, onChange}) {
                   setSize(option);
                   setIsActive(false)
                 }}
+                required
                 >
                 {option} UK
               </div>

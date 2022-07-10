@@ -1,16 +1,17 @@
-import React, { useState, Fragment } from 'react'
-import { Link } from "react-router-dom";
-import Naira from 'react-naira';
-import InputSlider from '../../components/InputSlider'
+import React, { useState, Fragment, useEffect } from 'react';
+import { Link, useParams } from "react-router-dom";
+import { getProductsDetails } from '../../helpers/api';
+import InputSlider from '../../components/InputSlider';
 import './New.css'
+import Naira from 'react-naira';
 
-function New({currentPost, data}) {
+function Categories({ currentPost, data }) {
+  const { category } = useParams();
   const [value, setValue] = useState('');
   const [slide, setSlide] = useState(0);
-
-
+  const [product, setProduct] = useState([]);
   const uniqueCategory = [];
-  const Categories = data.products?.filter(element => {
+  const Categories = product.products?.filter(element => {
     const isDuplicate = uniqueCategory.includes(element.brand);
     if (!isDuplicate) {
       uniqueCategory.push(element.brand);
@@ -19,12 +20,22 @@ function New({currentPost, data}) {
     return false;
   });
 
+  console.log(category);
+  useEffect(() => {
+    const products = async () => {
+      const requestProducts = await getProductsDetails();
+      setProduct(requestProducts);
+    };
+    products();
+  }, [])
 
-  console.log(uniqueCategory)
-  console.log(Categories);
+  const filtered = product.products?.filter(item => {
+    return item.brand === category;
+  })
+  console.log(filtered);
 
   return (
-    <div>
+  <div>
       <div className="container">
           <div className="row in-new">
             <div className="col-md-3">
@@ -40,7 +51,7 @@ function New({currentPost, data}) {
 
               <InputSlider value={slide} onChange={(e) => setSlide(e.target.value)}/>
            
-              <p id="Categories">Categories</p>
+              <p id="Categories">Brand</p>
               {uniqueCategory && uniqueCategory.map((post, i) => (
                 <Fragment key={i}>
                   <Link to={`/Brand/${post}`} key={post} className="pge">
@@ -53,7 +64,7 @@ function New({currentPost, data}) {
       
           <div className="col-md-9">
             <div className='row'>
-              {currentPost && currentPost.filter((post) => {
+              {filtered && filtered.filter((post) => {
                 if (value == "") {
                   return post
                 } else if (post.brand.toLowerCase().includes(value.toLowerCase())){
@@ -65,7 +76,7 @@ function New({currentPost, data}) {
                     <div className="thumb-wrapper">
                         <img src={`http://store-betta.herokuapp.com${post.image}`} className="img-fluid imgHome" alt={post.image} />        
                         <div>
-                          <div>{post.brand}</div>
+                          <p>{post.brand}</p>
                           <p className='postBrand'>{post.name}</p> 
                           <p className="item-price"><span><Naira>{post.price}</Naira></span></p>	
                         </div>  
@@ -78,11 +89,11 @@ function New({currentPost, data}) {
         </div>
       </div>
       
-  </div>
+  </div>   
   )
 } 
 
-export default New
+export default Categories
 
 
 

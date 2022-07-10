@@ -2,6 +2,7 @@
   "name": "divine",
   "version": "0.1.0",
   "private": true,
+  "proxy": "https://api.facts.ng/v1",
   "dependencies": {
     "@emotion/react": "^11.9.0",
     "@emotion/styled": "^11.8.1",
@@ -18,6 +19,8 @@
     "react": "^18.0.0",
     "react-bootstrap": "^2.3.0",
     "react-dom": "^18.0.0",
+    "react-elastic-carousel": "^0.11.5",
+    "react-naira": "^1.2.1",
     "react-router-dom": "^6.3.0",
     "react-scripts": "5.0.0",
     "react-swipeable-views-core": "^0.14.0",

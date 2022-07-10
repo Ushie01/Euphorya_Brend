@@ -8,6 +8,33 @@ body {
   font-weight: bold;
 }
 
+.nan{
+  padding: 22px 18px 14px 18px;
+  color: #000;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+
+.AdminNan{
+  padding: 15px 18px 0px 18px;
+  color: #000;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.nan:hover{
+  text-decoration: none;
+  color: #000;
+}
+
+.na{
+  margin-top: 10px;
+  font-size: 14px;
+  color: #000;
+  background-color: orange;
+}
+
 #toggleContainer label {
   text-align: center;
   width: 70px;
@@ -466,7 +493,7 @@ body {
   }
 
   .esc {
-    margin-top: 250px;
+    margin-top: 650px;
 
   }
 
@@ -475,9 +502,9 @@ body {
   }
 
   #drop {
-    height: 400px;
+    min-height: 400px;
     width: 700px;
-    margin: auto;
+    margin-top: -100px;
   }
 
   .it {
@@ -516,7 +543,7 @@ body {
   }
 
   .Party {
-    margin-top: -250px;
+    margin-top: -350px;
   }
 
   .season {
@@ -624,6 +651,24 @@ body {
     height: 30px;
     width: 30px;
   }
+
+  .pagination{
+    margin-Left: 100px;
+  }
+
+  .item-pric {
+    text-align: center;
+    font-size: 40px;
+    padding-left: 50px;
+    color: red;
+  }
+}
+
+.item-pric {
+  text-align: center;
+  font-size: 40px;
+  /* padding-left: 26px; */
+  color: red;
 }
 
 .brand {
@@ -647,6 +692,7 @@ body {
   .firstChild {
     flex-basis: 28%;
     margin-left: 25px;
+   
 
   }
 
@@ -690,6 +736,7 @@ body {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
+    min-height: 400px;
   }
 
   .left {
@@ -699,10 +746,6 @@ body {
   .season {
     margin: 80px 130px 60px 70px;
     background-color: #FAFAFA;
-  }
-
-  .Party {
-    min-height: 400px;
   }
 
   .it {
@@ -736,11 +779,11 @@ body {
     font-size: 12px;
   }
 
-  .season {
+  /* .season {
     margin: auto;
     background-color: #FAFAFA;
 
-  }
+  } */
 
   #it {
     font-size: 50px;
@@ -774,10 +817,10 @@ body {
     color: #000;
   }
 
-  .season {
+  /* .season {
     margin: 80px 20px 60px 40px;
     background-color: #FAFAFA;
-  }
+  } */
 
   .mb-0 {
     margin-top: -20px;
@@ -823,7 +866,6 @@ body {
 .firstChild {
   max-height: 600px;
   background-color: #FAFAFA;
-  border-radius: 15px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   margin-top: 20px;
 }
@@ -837,13 +879,14 @@ body {
   width: 300px;
   box-sizing: border-box;
   margin-top: 28px;
+  background-color: #999;
 }
 
 
 h1 {
   opacity: 0.5;
   color: #000;
-  font-size: 35px;
+  font-size: 40px;
   font-family: 'Times New Roman', Times, serif;
   margin-top: 100px;
 
@@ -857,15 +900,15 @@ h3 {
   opacity: .5;
 }
 
-.button {
+/* .button {
   margin: 5px 0px 0px 5px;
   color: #000;
   
-}
+} */
 
-button:hover {
+/* button:hover {
   box-shadow: 0 4px 8px 0 #000, 0 6px 20px 0 #F5FEF9;
-}
+} */
 
 .er {
   background-image: url(./assets/eur10.jpeg);
@@ -873,7 +916,7 @@ button:hover {
   background-size: 300px;
   box-shadow: gray;
   box-shadow: 0 4px 8px 0 purple, 0 6px 20px 0 #F5FEF9;
-  border-radius: 15px;
+  
 }
 
 .er:hover {
@@ -887,7 +930,6 @@ button:hover {
   background-size: 300px;
   box-shadow: gray;
   box-shadow: 0 4px 8px 0 orange, 0 6px 20px 0 #F5FEF9;
-  border-radius: 15px;
 }
 
 .er1:hover {
@@ -903,12 +945,11 @@ button:hover {
   background-size: 300px;
   box-shadow: gray;
   box-shadow: 0 4px 8px 0 rgb(177, 13, 128), 0 6px 20px 0 #F5FEF9;
-  border-radius: 15px;
 }
 
 .er2:hover {
-  margin: 50px;
-  opacity: 0.6;
+    -ms-transform: rotate(-10deg);
+    transform: rotate(-10deg);
 }
 
 hr {
@@ -1173,6 +1214,10 @@ h2::after {
   text-align: center;
 }
 
+.thumb-wrapper{
+  min-width: 600px;
+}
+
 .carousel .thumb-content {
   padding: 15px;
 }
@@ -1209,17 +1254,19 @@ h2::after {
   margin-right: -3px;
 }
 
-.carousel .item-price {
-  font-size: 13px;
-  padding: 2px 0;
+
+.btn-primary{
+  margin-left: 50px;
+  width: 150px;
+  font-size: x-large;
 }
 
-.carousel .item-price strike {
-  color: #999;
-  margin-right: 5px;
+.list-inline-item{
+  padding-left: 85px;
 }
 
-.carousel .item-price span {
+
+.carousel {
   color: #86bd57;
   font-size: 110%;
 }
@@ -1254,5 +1301,113 @@ h2::after {
 .star-rating i {
   font-size: 14px;
   color: #ffc000;
+}
+
+/* Admin End */
+
+
+label {
+  margin-top: 10px;
+}
+
+.saveproduct{
+  margin-top: 20px;
+  background-color: #86bd57;
+}
+
+.addProduct{
+  margin: auto;
+  background-color: #F0F0F0;
+}
+
+header{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+header h1{
+  font-size: 40px;
+  color: #000;
+}
+
+header button{
+  background-color: purple;
+  color: #fff;
+}
+
+.imageProduct{
+  height: 280px;
+  width: 200px;
+  margin-top: 15px;
+  object-fit: contain;
+}
+
+.imageProductOne{
+  height: 120px;
+  width: 80px;
+  object-fit: contain;
+}
+
+.app {
+  font-family: sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 20px;
+  height: 100vh;
+  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+  background-color: #f8f9fd;
+}
+
+.login-form {
+  background-color: white;
+  padding: 2rem;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.title {
+  font-size: 25px;
+  margin-bottom: 20px;
+}
+
+.ttable{
+  overflow-x: auto;
+}
+
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+  border: 1px solid #dddddd;
+}
+
+th {
+  text-align: left;
+  padding: 8px;
+  font-size: large;
+
+}
+
+td {
+
+  text-align: left;
+  padding: 8px;
+  font-size: 15px;
+  font-weight: 100;
+}
+
+tbody:nth-child(even), tr:nth-child(even){
+  background-color: #F3F3F3;
+}
+
+tbody:hover {
+  background-color: #F0F0F0;
+}
+
+.page-link{
+  text-decoration: none;
 }
 

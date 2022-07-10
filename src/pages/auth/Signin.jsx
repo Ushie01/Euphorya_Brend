@@ -1,146 +1,97 @@
-import React, { useState, useEffect } from "react";
-import ReactDOM from "react-dom";
-import { Link, useNavigate} from "react-router-dom";
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import { validateSignIn } from "../../components/Validateinfo";
 import { getLoginUser } from "../../helpers/api";
+import CheckOut from '../../components/Counter/CheckOut';
 import "./Signin.css";
 
 const Signin = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState(null);
-  const history = useNavigate();
+  const [errors, setErrors] = useState({});
+  const [err, setErr] = useState(null);
+  const [isSubmitted, setIsSubmitted] = useState(false);
 
-  
-  async function login() {
-    console.log(password, email);
-    const item = { email, password };
-    try {
-      let result = await fetch('http://store-betta.herokuapp.com/api/users/login', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(item)
-    });
-    result = await result.json();
-    if (result.message) {
-        setError(result.message)
-        return
+
+  const login = async (e) => {
+      e.preventDefault();
+      const values = {
+        password,
+        email
       }
-       console.log(item);
-       localStorage.setItem('user', result)
-    // history.push("/add")
-    } catch (error) {
-      console.error(error)
-    }
 
+  setErrors(validateSignIn(values))
+  const payload = await getLoginUser(values);
+  if (payload.message) {
+    setErr(payload.message)
+    return
+  } 
+    localStorage.setItem('user', JSON.stringify(payload));
+    setIsSubmitted(true);
+    window.location = "/"
 
   }
+ 
+  // JSX code for login form
+  const renderForm = (
+    <div className="form">
+      <form>
+        <div className="form-inputs">
+          <label>Email: </label>
+          <input
+            type="email"
+            name="email"
+            value={email}
+            className='form-control'
+            onChange={(e) => setEmail(e.target.value)}
+            required />
+        </div>
+
+         {errors.email && <p style={{color:"red"}}>{errors.email}</p>} 
+        
+        <div className="form-inputs">
+          <label>Password: </label>
+          <input
+            type="password"
+            name="password"
+            value={password}
+            className='form-control'
+            onChange={(e) => setPassword(e.target.value)}
+            required />
+        </div>
+       
+        {errors.password && <p style={{ color: "red" }}>{errors.password}</p>} 
+       
+        <label><Link to="#">Forget Password</Link></label><br />
+         {err && <p style={{color:"red"}}>{err}</p>}
+        <button
+          className="btn btn-success SigninButton"
+          onClick={(e) => { login(e) }}>
+          Sign In
+        </button>
+      </form>
+    </div>
+  );
 
   return (
-    <div>
-      <h1>Login</h1>
-      <div className="col-sm-6">
-          <input type="text" 
-            placeholder="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            className="form-control" 
-            required />  <br />
-          <input type="password" 
-            placeholder="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            className="form-control" />  <br />
-            <h4 style={{color: 'red'}}>{ error }</h4>
-            <button onClick={login} className="btn btn-primary">Login</button>
-        </div>
-    </div >
-  )
+    <div className="app">
+      <div className="login-form">
+        <div className="title">Sign In </div>
+        {isSubmitted ? <div>{`Welcome on board`}</div> : renderForm }
+      </div>
+    </div>
+  );
 }
-
-
-
 export default Signin;
 
-  // React States
-  // const [errorMessages, setErrorMessages] = useState({});
-  // const [isSubmitted, setIsSubmitted] = useState(false);
-
-  // // User Login info
-  // const database = [
-  //   {
-  //     username: "user1",
-  //     password: "pass1"
-  //   },
-  //   {
-  //     username: "user2",
-  //     password: "pass2"
+  //   const setData = () => {
+  //     let obj = {name: 'John', age: 12, email: 'abugodwin@gmail.com'}
+  //     sessionStorage.setItem('myData', JSON.stringify(obj));
   //   }
-  // ];
 
-  // const errors = {
-  //   uname: "invalid username",
-  //   pass: "invalid password"
-  // };
-
-  // const handleSubmit = (event) => {
-  //   //Prevent page reload
-  //   event.preventDefault();
-
-  //   var { uname, pass } = document.forms[0];
-
-  //   // Find user login info
-  //   const userData = database.find((user) => user.username === uname.value);
-
-  //   // Compare user info
-  //   if (userData) {
-  //     if (userData.password !== pass.value) {
-  //       // Invalid password
-  //       setErrorMessages({ name: "pass", message: errors.pass });
-  //     } else {
-  //       setIsSubmitted(true);
-  //     }
-  //   } else {
-  //     // Username not found
-  //     setErrorMessages({ name: "uname", message: errors.uname });
-  //   }
-  // };
-
-  // // Generate JSX code for error message
-  // const renderErrorMessage = (name) =>
-  //   name === errorMessages.name && (
-  //     <div className="error">{errorMessages.message}</div>
-  //   );
-
-  // // JSX code for login form
-  // const renderForm = (
-  //   <div className="form">
-  //     <form onSubmit={handleSubmit}>
-  //       <div className="input-container">
-  //         <label>Username: </label>
-  //         <input type="text" name="uname" required />
-  //         {renderErrorMessage("uname")}
-  //       </div>
-  //       <div className="input-container">
-  //         <label>Password: </label>
-  //         <input type="password" name="pass" required />
-  //         {renderErrorMessage("pass")}
-  //       </div>
-  //       <label><Link to="#">Forget Password</Link></label><br />
-  //       <button className="btn btn-success SigninButton">Sign In</button>
-  //       {/* <div className="button-container">
-  //         <input type="submit" />
-  //       </div> */}
-  //     </form>
-  //   </div>
-  // );
-
-  // return (
-  //   <div className="app">
-  //     <div className="login-form">
-  //       <div className="title">Sign In</div>
-  //       {isSubmitted ? <div>User is successfully logged in</div> : renderForm}
-  //     </div>
-  //   </div>
-  // );
+  //   const getData = () => {
+  //     let data = sessionStorage.getItem('myData');
+  //     data = JSON.parse(data);
+  //     setState(data)
+  //     console.log(data)
+  //   }                                                                                          

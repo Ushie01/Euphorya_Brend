@@ -15,48 +15,48 @@ function Home() {
 
   return (
     <>
-      <div className="container-fluid" style={{  marginTop:'200px'}}>
+      
+      <div className="container-fluid">
         <div className="row brand">
           <marquee className="marquee" behavior="scroll" direction="right" scrollamount="12" width="100%"><h1>UNLEASH RADICALITY</h1></marquee>
           <marquee className="marquee1" behavior="scroll" direction="left" scrollamount="12" width="100%"><h3>ME AND MY FRIENDS ARE SOUL FOOD, WE AREN'T EYE CANDY</h3></marquee>
         </div>
       </div>
+      
       <div className="container-fluid cont">
         <div className="row firstRow">
-          <marquee behavior="scroll" direction="right" scrollamount="12" width="60%">I love Euphorya</marquee>
           <div className="firstChild">
             <div className="row1 er">
-              <button className="button">Shop Now <img src={Female} className="female img-fluid" alt="" /></button>
+              <button className="button">Shop Now <img src={Male} className="female img-fluid" alt={Male} /></button>
             </div>
-            <hr style={{color:'#000'}}/>
+            <hr />
             <h3 className="Euph">Euphorya</h3>
             <p className="Euph_p">At Euphorya, theres something for everyone at the BEST price without 
               compromising on quaity.</p>
           </div>
           <div className="firstChild">
             <div className="row1 er1">
-              <button className="button"> Shop Now <img src={Male} className="female" alt="" />
+              <button className="button"> Shop Now <img src={Female} className="female" alt={Female} />
               </button>
             </div>
-            <hr style={{color:'#000'}}/>
+            <hr />
             <h3 className="Euph1">Fury</h3>
             <p className="Euph_p">At Euphorya, theres something for everyone at the BEST price without 
               compromising on quaity.</p>
           </div>
           <div className="firstChild">
             <div className="row1 er2">
-              <button className="button"> Shop Now <img src={Transgender} className="female" alt="" />
+              <button className="button"> Shop Now <img src={Transgender} className="female" alt={Transgender} />
               </button>
             </div>
-            <hr style={{color:'#000'}}/>
+            <hr />
             <h3 className="Euph2">Ecstasy</h3>
             <p className="Euph_p">At Euphorya, theres something for everyone at the BEST price without 
               compromising on quaity.</p>
           </div>
         </div>
       </div>
-
-
+      
       
       <div className="container-fluid">
         <div className="row roWW">
@@ -75,7 +75,7 @@ function Home() {
             <p className="it">Euphorya brand is inspired</p>
             <p className="to">With clear vision</p>
             <p className="line">___</p>
-            <p className="put"style={style}> for social consciousness and to make a statement with unique street clothings</p>
+            <p className="put"> for social consciousness and to make a statement with unique street clothings</p>
           </div>
         </div>
       </div>
@@ -96,10 +96,7 @@ function Home() {
     
 
       {/* <!-- What people are saying --> */}
-
-
-     
-
+      
     </>
   )
 }

@@ -30,16 +30,16 @@ const marks = [
   
 ];
 
-function valuetext(value) {
-  console.log(value)
-}
+// function valuetext(value) {
+//   console.log(value)
+// }
 
 export default function InputSlider() {
   return (
     <Box sx={{ width: "240px" }}>
       <Slider
         aria-label="Always visible"
-        getAriaValueText={valuetext}
+        // getAriaValueText={valuetext}
         step={10}
         marks={marks}
         valueLabelDisplay="on"
